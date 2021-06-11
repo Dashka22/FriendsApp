@@ -43,10 +43,12 @@ export const UserStore = (props) => {
           })
           .catch((error) => {
             alert(error);
+            loginFailed(error.message);
           });
       })
       .catch((error) => {
         alert(error);
+        loginFailed(error.message);
       });
   };
 
@@ -77,19 +79,21 @@ export const UserStore = (props) => {
             );
           })
           .catch((error) => {
-            loginFailed(err.message);
+            alert(error);
+            loginFailed(error.message);
           });
       })
       .catch((error) => {
+        loginFailed(error.message);
         alert(error);
       });
   };
 
   const loginFailed = (error) => {
-    console.log(error);
     setIsLoggedIn(false);
     setEmail(null);
     setUserName(null);
+    setIsLoading(false);
   };
 
   const loginUserSuccessful = async (email, userName, bill, uid) => {

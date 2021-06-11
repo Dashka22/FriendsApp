@@ -32,7 +32,7 @@ const HomeScreen = ({ navigation, colors, fonts }) => {
       batch
         .commit()
         .then(() => {
-          conssole.log("amjilttai");
+          console.log("amjilttai");
         })
         .catch((err) => {
           console.log(err);
