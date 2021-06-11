@@ -12,7 +12,7 @@ import CardTitle from "../components/CardTitle";
 import MyButton from "../components/MyButton";
 import UserContext from "../contexts/UserContex";
 import { firebase } from "../../firebase/config";
-
+import Spinner from "../components/Spinner";
 const db = firebase.firestore();
 const HomeScreen = ({ navigation, colors, fonts }) => {
   const state = useContext(UserContext);
@@ -33,6 +33,7 @@ const HomeScreen = ({ navigation, colors, fonts }) => {
         .commit()
         .then(() => {
           console.log("amjilttai");
+          state.setMyFriends([]);
         })
         .catch((err) => {
           console.log(err);
@@ -47,35 +48,41 @@ const HomeScreen = ({ navigation, colors, fonts }) => {
   };
   return (
     <View style={styles.container}>
-      <MyInput
-        mode="outlined"
-        value={bill.toString()}
-        label="Тооцооны нийт үнэ"
-        placeHolder="Нийт үнэ"
-        onChangeText={setBill}
-        keyboardType="number-pad"
-      />
-      <FlatList
-        style={styles.flatList}
-        keyExtractor={(person) => person.key}
-        data={state.myFriends}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity onPress={() => handleRemove(item.name)}>
-            <CardTitle
-              title={item.name}
-              bill={parseInt(bill / (state.myFriends.length + 1))}
-              withBill
-            />
-          </TouchableOpacity>
-        )}
-      />
-      <MyButton
-        mode="text"
-        labelStyle={{ color: "#FFA451", fontSize: 18 }}
-        title="Найз нэмэх"
-        onPress={() => navigation.navigate("Friendlist")}
-      />
-      <MyButton title="Илгээх" onPress={sendBill} />
+      {state.isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <MyInput
+            mode="outlined"
+            value={bill.toString()}
+            label="Тооцооны нийт үнэ"
+            placeHolder="Нийт үнэ"
+            onChangeText={setBill}
+            keyboardType="number-pad"
+          />
+          <FlatList
+            style={styles.flatList}
+            keyExtractor={(person) => person.key}
+            data={state.myFriends}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity onPress={() => handleRemove(item.name)}>
+                <CardTitle
+                  title={item.name}
+                  bill={parseInt(bill / (state.myFriends.length + 1))}
+                  withBill
+                />
+              </TouchableOpacity>
+            )}
+          />
+          <MyButton
+            mode="text"
+            labelStyle={{ color: "#FFA451", fontSize: 18 }}
+            title="Найз нэмэх"
+            onPress={() => navigation.navigate("Friendlist")}
+          />
+          <MyButton title="Илгээх" onPress={sendBill} />
+        </>
+      )}
     </View>
   );
 };
