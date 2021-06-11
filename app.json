@@ -20,11 +20,14 @@
       "supportsTablet": true
     },
     "android": {
+    
+      "package": "com.dashka.friendapp",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.dashka.friendapp"
+      }
+      
     },
     "web": {
       "favicon": "./assets/favicon.png"
