@@ -12,7 +12,6 @@ const AddFriendScreen = () => {
   const filteredPeopleList = peopleList.filter(
     (el) => el.id !== state.userId && el.name.includes(search)
   );
-  const addNewItem = () => {};
   return (
     <View style={styles.container}>
       <Search style={styles.search} onChangeText={setSearch} value={search} />

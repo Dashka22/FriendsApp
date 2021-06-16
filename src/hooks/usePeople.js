@@ -26,5 +26,6 @@ export default (removeLoading) => {
         console.log(err);
       });
   }, [removeLoading]);
+
   return [peopleList, loading];
 };

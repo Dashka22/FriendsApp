@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { StyleSheet, TouchableOpacity, View, FlatList } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, View } from "react-native";
 import { Title, Avatar } from "react-native-paper";
 import MyButton from "../components/MyButton";
 import UserContext from "../contexts/UserContex";

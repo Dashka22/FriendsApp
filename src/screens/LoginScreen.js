@@ -4,9 +4,8 @@ import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
 import UserContext from "../contexts/UserContex";
 import Spinner from "../components/Spinner";
-const LoginScreen = ({ route, navigation }) => {
+const LoginScreen = ({ navigation }) => {
   const state = useContext(UserContext);
-
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const loginHandler = () => {

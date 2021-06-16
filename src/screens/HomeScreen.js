@@ -14,12 +14,12 @@ import UserContext from "../contexts/UserContex";
 import { firebase } from "../../firebase/config";
 import Spinner from "../components/Spinner";
 const db = firebase.firestore();
-const HomeScreen = ({ navigation, colors, fonts }) => {
+const HomeScreen = ({ navigation }) => {
   const state = useContext(UserContext);
   const [bill, setBill] = useState("");
   const sendBill = () => {
     if (state.myFriends.length === 0) {
-      Alert.alert("Хамт тооцоо хуваалца найзаа нэмнэ үү");
+      Alert.alert("Хамт тооцоо хуваалцах найзаа нэмнэ үү");
     } else {
       const batch = db.batch();
       state.myFriends.map((el) => {
